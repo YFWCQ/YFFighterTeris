@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>YFFighterTeris.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>5EBBC70D1E5ADC6E0025B5C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5EBBC7241E5ADC6F0025B5C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5EBBC72F1E5ADC6F0025B5C7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
