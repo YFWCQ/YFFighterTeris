@@ -11,8 +11,6 @@ import UIKit
 class YFTetrisShowView: UIView {
 
     var isFill:Bool = false
-    var xx:Int = 0
-    var yy:Int = 0
     
     override init(frame: CGRect) {
         super.init(frame: frame)

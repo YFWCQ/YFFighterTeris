@@ -15,9 +15,14 @@ class YFTerisBaModel: NSObject {
     
     var showView:YFTetrisShowView!
     // 横坐标
-    var horIndex:Int = 0
+    var horIndex:Int! = 0
+    // 横轴数量
+    var horCount:Int! = 0
+  
     // 纵坐标
-    var verIndex:Int = 0
+    var verIndex:Int! = 0
+    // 纵轴数量
+    var verCount:Int! = 0
     
     init(frame:CGRect,hIndex:Int,vIndex:Int) {
     
@@ -36,6 +41,27 @@ class YFTerisBaModel: NSObject {
      view.addSubview(backGView)
      view.addSubview(showView)
     }
+    
+    func downIndex() -> Int {
+        
+        return  (verIndex + 1) * horCount + horIndex
+    }
+    
+    func leftIndex() -> Int {
+        
+        return  verIndex * horCount + horIndex - 1
+    }
+    
+    func rightIndex() -> Int {
+        
+        return  verIndex * horCount + horIndex + 1
+    }
+
+    func arrayIndex() -> Int {
+        
+        return  verIndex * horCount + horIndex
+    }
+    
     
     
     
