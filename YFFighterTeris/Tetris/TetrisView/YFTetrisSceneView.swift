@@ -111,45 +111,19 @@ class YFTetrisSceneView: UIView {
         {
             let nextVerIndx = closeViewOfMovingModel.verIndex
             
-//            if downIndx > 0 && {
-//                <#code#>
-//            }
-            
+            // 是否到最后一行
             if nextVerIndx! >= row - 1{
                 self.needSettingWhenisBottom()
                 return
             }
-            
             let downIndex = closeViewOfMovingModel.downIndex()
-//            print(downIndex)
-//            print(self.viewDataModel.sceneViewArray.count)
             let downModel = self.viewDataModel.sceneViewArray[downIndex]
-            
+            // 是否 有阻碍
             if self.viewDataModel.sceneCloseArray.contains(downModel) {
                 self.needSettingWhenisBottom()
                 return
             }
-            
         }
-        
-//        // 检查已经被占用的方块和 正在移动的方块 有没有 相邻
-//            for closeViewOfMovingModel in self.viewMovingModel.dataViewArray
-//            {
-//                for closeViewModel in self.viewDataModel.sceneCloseArray {
-//                    if closeViewModel.verIndex - closeViewOfMovingModel.verIndex <= 1 && closeViewModel.horIndex == closeViewOfMovingModel.horIndex {
-//                        self.needSettingWhenisBottom()
-//                        return
-//                    }
-//                }
-//            }
-//
-//        if let model = self.viewMovingModel.dataArray.last
-//        {
-//            // 是否下落到 不能再下落的 地方了
-//            if model.yy == self.row - 1 {
-//              self.needSettingWhenisBottom()
-//            }
-//        }
     }
     func needSettingWhenisBottom()
     {
