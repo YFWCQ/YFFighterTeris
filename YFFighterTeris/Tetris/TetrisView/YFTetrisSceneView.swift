@@ -115,13 +115,14 @@ class YFTetrisSceneView: UIView {
 //                <#code#>
 //            }
             
-            if nextVerIndx! > row - 1{
+            if nextVerIndx! >= row - 1{
                 self.needSettingWhenisBottom()
                 return
             }
             
             let downIndex = closeViewOfMovingModel.downIndex()
-
+//            print(downIndex)
+//            print(self.viewDataModel.sceneViewArray.count)
             let downModel = self.viewDataModel.sceneViewArray[downIndex]
             
             if self.viewDataModel.sceneCloseArray.contains(downModel) {
