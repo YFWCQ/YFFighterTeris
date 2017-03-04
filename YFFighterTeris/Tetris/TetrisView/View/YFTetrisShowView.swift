@@ -20,9 +20,9 @@ class YFTetrisShowView: UIView {
         super.init(coder:aDecoder)
     }
     
-    func fill() {
+    func fill(model:YFTetrisMovingSceneModel) {
         isFill = true
-        self.backgroundColor = UIColor.purple
+        self.backgroundColor = model.backGroudColor
     }
     func empty() {
         isFill = false

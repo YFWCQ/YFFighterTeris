@@ -8,13 +8,20 @@
 
 import UIKit
 
+let colorArray = [UIColor.green,UIColor.red,UIColor.purple,UIColor.orange,UIColor.cyan,UIColor.white]
+
 class YFTetrisMovingSceneModel: NSObject {
     var xx:Int = 0
     var yy:Int = 0
     
+    var indexState:Int = -20
+    var backGroudColor:UIColor?
+    
     init(x:Int,y:Int) {
         xx = x
         yy = y
+        indexState = Int(arc4random() % 6) - 3
+        backGroudColor = colorArray[indexState + 3]
     }
 }
 
@@ -23,6 +30,18 @@ class YFTetrisMovingSceneDataModel: NSObject {
     
     var dataArray:[YFTetrisMovingSceneModel] = []
     var dataViewArray:[YFTerisBaModel] = []
+    
+    
+    
+    //MARK: 2个方格的正方形
+    func creatTwoCube() {
+        dataArray.removeAll()
+        for i in 0..<2 {
+            let model = YFTetrisMovingSceneModel(x: beginXX + i % 2, y: -2 + i / 2)
+            dataArray.append(model)
+        }
+    }
+
     
     //MARK: 四个方格的正方形
     func creatFourCube() {
@@ -82,11 +101,26 @@ class YFTetrisMovingSceneDataModel: NSObject {
     func downOneStep() {
         self.downSteps(step: 1)
     }
+    
     // 下移 step 是步数
     func downSteps(step:Int) {
         for model in self.dataArray {
             model.yy += 1
         }
     }
+    // 左移动 1 步
+    func leftOneStep() {
+        for model in self.dataArray {
+            model.xx -= 1
+        }
+    }
+    
+    // 左移动 1 步
+    func rightOneStep() {
+        for model in self.dataArray {
+            model.xx += 1
+        }
+    }
+
     
 }

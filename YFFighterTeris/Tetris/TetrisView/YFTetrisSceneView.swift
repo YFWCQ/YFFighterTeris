@@ -15,13 +15,13 @@ class YFTetrisSceneView: UIView {
     // 正在 移动的 方块
     let viewMovingModel:YFTetrisMovingSceneDataModel = YFTetrisMovingSceneDataModel()
     
-    var column:Int = 6 // 6列
-    var row:Int = 10   // 10 行
+    var horCount:Int = 6 // 每行多少个
+    var verCount:Int = 10   // 每列 多少个
     
     var timer:Timer!
     
     required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder:aDecoder)
     }
 
     override init(frame: CGRect) {
@@ -30,7 +30,7 @@ class YFTetrisSceneView: UIView {
     }
     
     func creatSecenView() {
-        viewMovingModel.beginXX = column / 2
+        viewMovingModel.beginXX = horCount / 2
         weak var weakS = self
         timer = Timer.YF_scheduledTimerWithTimeInterval(0.2, closure: {
             weakS?.nextStepGame()
@@ -38,12 +38,12 @@ class YFTetrisSceneView: UIView {
         
         timer.pauseTimer()
         
-        let width = frame.size.width / CGFloat(column)
-        let height = frame.size.height / CGFloat(row)
+        let width = frame.size.width / CGFloat(horCount)
+        let height = frame.size.height / CGFloat(verCount)
         
-        for i in 0..<column*row {
-            let xx = i % column
-            let yy = i / column
+        for i in 0..<horCount*verCount {
+            let xx = i % horCount
+            let yy = i / horCount
             
             let terisModel = self.terisBaModelYF(xx: xx, yy: yy, frame: CGRect(x: width * CGFloat(xx), y: height * CGFloat(yy), width: width, height: height), superView: self)
             viewDataModel.sceneViewArray.append(terisModel)
@@ -63,8 +63,8 @@ class YFTetrisSceneView: UIView {
         let terisBaModel = YFTerisBaModel(frame: frame,hIndex:xx,vIndex:yy)
         terisBaModel.addToSuperView(view: superView)
         terisBaModel.showView.empty()
-        terisBaModel.verCount = row
-        terisBaModel.horCount = column
+        terisBaModel.verCount = verCount
+        terisBaModel.horCount = horCount
         return terisBaModel
     }
 
@@ -74,17 +74,22 @@ class YFTetrisSceneView: UIView {
         timer.resumeTimer()
     }
     
-    func nextStepGame(){
-        
-        self.clearAllfillView()
-        self.viewMovingModel.downOneStep()
-        self.fillAllfillView()
-        self.checkIsBottomed()
+    func nextStepGame()-> Bool {
+        if self.isCanDown(){
+            self.clearAllfillView()
+            self.viewMovingModel.downOneStep()
+            self.fillAllfillView()
+//            return self.checkIsBottomed()
+        }else
+        {
+            self.needSettingWhenisBottom()
+        }
+        return true
     }
     
     func clearAllfillView() {
         for model in self.viewMovingModel.dataArray {
-            let arrayXX = model.xx + model.yy * column
+            let arrayXX = model.xx + model.yy * horCount
             if arrayXX >= 0  && self.viewDataModel.sceneViewArray.count > arrayXX{
                 let terisModel = self.viewDataModel.sceneViewArray[arrayXX]
                 terisModel.showView.empty()
@@ -95,36 +100,101 @@ class YFTetrisSceneView: UIView {
     
     func fillAllfillView() {
         for model in self.viewMovingModel.dataArray {
-            let arrayXX = model.xx + model.yy * column
+            let arrayXX = model.xx + model.yy * horCount
             if arrayXX >= 0  && self.viewDataModel.sceneViewArray.count > arrayXX{
                 let terisModel = self.viewDataModel.sceneViewArray[arrayXX]
-                terisModel.showView.fill()
+                terisModel.showView.fill(model: model)
                 self.viewMovingModel.dataViewArray.append(terisModel)
             }
         }
     }
     // 检查是否 到 最后，
-    func checkIsBottomed() {
-        
+    func checkIsBottomed() -> Bool {
+        if self.isCanDown() == false{
+           self.needSettingWhenisBottom()
+            return true
+        }
+        return false
+    }
+    
+    // 检查是否可以 下落
+    func isCanDown() -> Bool {
+        for closeViewOfMovingModel in self.viewMovingModel.dataViewArray
+        {
+            // 是否到最后一行
+            if closeViewOfMovingModel.verIndex! >= verCount - 1{
+                return false
+            }
+            let downModel = self.viewDataModel.sceneViewArray[closeViewOfMovingModel.downIndex()]
+            // 是否 有阻碍
+            if self.viewDataModel.sceneCloseArray.contains(downModel)  {
+                return false
+            }
+        }
+        return true
+    }
+    // 检查是否可以 向左移动
+    func isCanLeft() -> Bool {
         
         for closeViewOfMovingModel in self.viewMovingModel.dataViewArray
         {
-            let nextVerIndx = closeViewOfMovingModel.verIndex
+            let horVerIndx = closeViewOfMovingModel.horIndex
             
             // 是否到最后一行
-            if nextVerIndx! >= row - 1{
-                self.needSettingWhenisBottom()
-                return
+            if horVerIndx! <= 0{
+                return false
             }
-            let downIndex = closeViewOfMovingModel.downIndex()
-            let downModel = self.viewDataModel.sceneViewArray[downIndex]
+            let leftIndex = closeViewOfMovingModel.leftIndex()
+            let leftModel = self.viewDataModel.sceneViewArray[leftIndex]
             // 是否 有阻碍
-            if self.viewDataModel.sceneCloseArray.contains(downModel) {
-                self.needSettingWhenisBottom()
-                return
+            if leftModel.showView.isFill && self.viewMovingModel.dataViewArray.contains(leftModel) == false {
+                return false
             }
         }
+        return true
     }
+    // 左移一步
+    func leftStep()  {
+        if self.isCanLeft() {
+            self.clearAllfillView()
+            self.viewMovingModel.leftOneStep()
+            self.fillAllfillView()
+        }
+
+    }
+    
+    // 检查是否可以 向右移动
+    func isCanRight() -> Bool {
+        
+        for closeViewOfMovingModel in self.viewMovingModel.dataViewArray
+        {
+            let horVerIndx = closeViewOfMovingModel.horIndex
+            
+            // 是否到最后一行
+            if horVerIndx! >= horCount - 1{
+                return false
+            }
+            let rightIndex = closeViewOfMovingModel.rightIndex()
+            let rightModel = self.viewDataModel.sceneViewArray[rightIndex]
+            // 是否 有阻碍
+            if rightModel.showView.isFill && self.viewMovingModel.dataViewArray.contains(rightModel) == false {
+                return false
+            }
+        }
+        return true
+    }
+    // 右移一步
+    func rightStep()  {
+        if self.isCanRight() {
+            self.clearAllfillView()
+            self.viewMovingModel.rightOneStep()
+            self.fillAllfillView()
+        }
+    }
+
+    
+    
+    
     func needSettingWhenisBottom()
     {
         // 首先检测有没有失败
@@ -143,11 +213,11 @@ class YFTetrisSceneView: UIView {
     
     func rememberIsBottomedOfMovingModel() {
         for model in self.viewMovingModel.dataArray {
-            let arrayXX = model.xx + model.yy * column
+            let arrayXX = model.xx + model.yy * horCount
             if arrayXX >= 0  && self.viewDataModel.sceneViewArray.count > arrayXX{
-                let view = self.viewDataModel.sceneViewArray[arrayXX]
+                let subModel = self.viewDataModel.sceneViewArray[arrayXX]
                
-                self.viewDataModel.sceneCloseArray.append(view)
+                self.viewDataModel.sceneCloseArray.append(subModel)
             }
         }
     }
@@ -159,8 +229,26 @@ class YFTetrisSceneView: UIView {
         
         let delegate:AppDelegate = UIApplication.shared.delegate as! AppDelegate;
         
-        UIAlertController.init(title: "失败", message: "完蛋了", preferredStyle: UIAlertControllerStyle.alert).show((delegate.window?.rootViewController)!, sender: nil)
+        let alertVC:UIAlertController = UIAlertController(title: "失败", message: "完蛋了", preferredStyle: UIAlertControllerStyle.alert)
+        
+        alertVC.addAction(UIAlertAction(title: "哦", style: UIAlertActionStyle.cancel, handler: nil))
+        
+        delegate.window?.rootViewController?.present(alertVC, animated: true, completion: nil)
+    }
+    // 快速下落
+    func pullToBottom() {
+        for _ in 0...verCount {
+            if self.nextStepGame() {
+             break
+            }
+        }
     }
     
-    
+    func pullToLeft() {
+        
+    }
+
+    func pullToRight() {
+        
+    }
 }

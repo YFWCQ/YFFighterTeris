@@ -12,21 +12,80 @@ class ViewController: UIViewController {
 
     var secenvView:YFTetrisSceneView!
     
+    let panGesModel:YFPanGestureHandle = YFPanGestureHandle()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+        panGesModel.viewC = self
+        
+        //
         secenvView = YFTetrisSceneView(frame: CGRect(x: 20, y: 20, width: self.view.frame.size.width - 40, height: self.view.frame.size.height - 80))
-        secenvView.column = 15
-        secenvView.row = 25
+        secenvView.horCount = 15
+        secenvView.verCount = 25
         secenvView.creatSecenView()
         self.view.addSubview(secenvView)
         
         secenvView.backgroundColor = UIColor.purple
         
+        // 移动手势,
+        let pangesture = UIPanGestureRecognizer(target: self, action: #selector(ViewController.panGesAction(sender:)))
+        pangesture.maximumNumberOfTouches = 1
+        self.view.addGestureRecognizer(pangesture)
+    }
+    
+    func panGesAction(sender:UIPanGestureRecognizer)  {
+
+        let translation : CGPoint = sender.translation(in: self.view)
+        if sender.state == UIGestureRecognizerState.began {
+        // 从 0.0 开始
+            panGesModel.handleMovedBeginPoint(point: translation)
+//            print(translation)
+        }else if sender.state == UIGestureRecognizerState.changed {
+//            print(translation)
+            panGesModel.handleMovedChangedPoint(point: translation)
+        }else if sender.state == UIGestureRecognizerState.ended {
+            
+            panGesModel.handleMovedEndPoint(point: translation)
+        }
+    }
+    func gesLeftAction(){
+        
+        self.secenvView.leftStep()
+        
+    }
+    func gesRightAction(){
+        
+        self.secenvView.rightStep()
     }
 
+    func gesDownAction(){
+        
+        self.secenvView.pullToBottom()
+    }
+
+    
+    
     @IBAction func actionBegin(_ sender: Any) {
         secenvView.beginGame()
     }
+    
+//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        super.touchesBegan(touches, with: event)
+//        
+//        print(touches)
+//        print("11111111111")
+//        print(touches.count)
+//        print("00000000000")
+//        for touch in touches {
+//            
+////            touch.location(in: self.view)
+//            
+//           let location = touch.location(in: self.view)
+//                
+//            print(location)
+//            
+//        }
+//    }
 }
 
