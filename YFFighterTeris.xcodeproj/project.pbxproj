@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		5E8C8B6C1E67D34600169985 /* YFPanGestureHandle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E8C8B6B1E67D34600169985 /* YFPanGestureHandle.swift */; };
+		5E9355831E71738500EB59C1 /* YFBaseCubeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9355821E71738500EB59C1 /* YFBaseCubeModel.swift */; };
+		5E9355851E7173B200EB59C1 /* YFTwoCubeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9355841E7173B200EB59C1 /* YFTwoCubeModel.swift */; };
 		5EBBC7121E5ADC6E0025B5C7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBBC7111E5ADC6E0025B5C7 /* AppDelegate.swift */; };
 		5EBBC7141E5ADC6E0025B5C7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBBC7131E5ADC6E0025B5C7 /* ViewController.swift */; };
 		5EBBC7171E5ADC6E0025B5C7 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EBBC7151E5ADC6E0025B5C7 /* Main.storyboard */; };
@@ -45,6 +47,8 @@
 
 /* Begin PBXFileReference section */
 		5E8C8B6B1E67D34600169985 /* YFPanGestureHandle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFPanGestureHandle.swift; sourceTree = "<group>"; };
+		5E9355821E71738500EB59C1 /* YFBaseCubeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFBaseCubeModel.swift; sourceTree = "<group>"; };
+		5E9355841E7173B200EB59C1 /* YFTwoCubeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YFTwoCubeModel.swift; sourceTree = "<group>"; };
 		5EBBC70E1E5ADC6E0025B5C7 /* YFFighterTeris.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YFFighterTeris.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EBBC7111E5ADC6E0025B5C7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EBBC7131E5ADC6E0025B5C7 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -94,6 +98,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5E9355801E71734600EB59C1 /* CubeModel */ = {
+			isa = PBXGroup;
+			children = (
+				5E9355811E71735200EB59C1 /* Base */,
+				5E9355841E7173B200EB59C1 /* YFTwoCubeModel.swift */,
+			);
+			path = CubeModel;
+			sourceTree = "<group>";
+		};
+		5E9355811E71735200EB59C1 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				5E9355821E71738500EB59C1 /* YFBaseCubeModel.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		5EBBC7051E5ADC6E0025B5C7 = {
 			isa = PBXGroup;
 			children = (
@@ -178,6 +199,7 @@
 		5EBBC7461E5ADCB30025B5C7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				5E9355801E71734600EB59C1 /* CubeModel */,
 				5EBBC7471E5ADCB30025B5C7 /* YFTetrisMovingSceneDataModel.swift */,
 				5EBBC7481E5ADCB30025B5C7 /* YFTetrisMovingSceneHandle.swift */,
 				5EBBC7491E5ADCB30025B5C7 /* YFTetrisSceneDataModel.swift */,
@@ -335,10 +357,12 @@
 				5EBBC74F1E5ADCB30025B5C7 /* YFTetrisMovingSceneHandle.swift in Sources */,
 				5EBBC7501E5ADCB30025B5C7 /* YFTetrisSceneDataModel.swift in Sources */,
 				5EBBC7521E5ADCB30025B5C7 /* YFTetrisSceneView.swift in Sources */,
+				5E9355831E71738500EB59C1 /* YFBaseCubeModel.swift in Sources */,
 				5EFB47561E5AE72700A00E79 /* YFTetrisBackView.swift in Sources */,
 				5EFB47521E5ADF0000A00E79 /* YFTerisBaModel.swift in Sources */,
 				5EBBC74E1E5ADCB30025B5C7 /* YFTetrisMovingSceneDataModel.swift in Sources */,
 				5EBBC71A1E5ADC6E0025B5C7 /* YFFighterTeris.xcdatamodeld in Sources */,
+				5E9355851E7173B200EB59C1 /* YFTwoCubeModel.swift in Sources */,
 				5EBBC74D1E5ADCB30025B5C7 /* ExtensionTimer.swift in Sources */,
 				5E8C8B6C1E67D34600169985 /* YFPanGestureHandle.swift in Sources */,
 				5EFB47541E5AE43B00A00E79 /* YFTetrisShowView.swift in Sources */,

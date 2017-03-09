@@ -15,6 +15,7 @@ class YFTetrisSceneView: UIView {
     // 正在 移动的 方块
     let viewMovingModel:YFTetrisMovingSceneDataModel = YFTetrisMovingSceneDataModel()
     
+    
     var horCount:Int = 6 // 每行多少个
     var verCount:Int = 10   // 每列 多少个
     
@@ -50,14 +51,6 @@ class YFTetrisSceneView: UIView {
         }
     }
     // MARK:- View
-//    func sceneViewYF(index:Int,frame:CGRect) -> YFTetrisCubeView {
-//        let sceneView = YFTetrisCubeView(frame: frame)
-//        
-//        sceneView.layer.borderColor = UIColor.blue.cgColor
-//        sceneView.layer.borderWidth = 0.5
-//    
-//        return sceneView
-//    }
     
     func terisBaModelYF(xx:Int,yy:Int,frame:CGRect,superView:UIView) -> YFTerisBaModel {
         let terisBaModel = YFTerisBaModel(frame: frame,hIndex:xx,vIndex:yy)
@@ -70,8 +63,8 @@ class YFTetrisSceneView: UIView {
 
     // MARK:- model
     func beginGame() {
-     self.viewMovingModel.createArcStyle()
-        timer.resumeTimer()
+     self.viewMovingModel.creatTwoCube()
+     timer.resumeTimer()
     }
     
     func nextStepGame()-> Bool {
@@ -250,5 +243,10 @@ class YFTetrisSceneView: UIView {
 
     func pullToRight() {
         
+    }
+    
+    func changeMovingStyle()
+    {
+        print("点击")
     }
 }

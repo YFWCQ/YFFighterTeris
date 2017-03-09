@@ -32,8 +32,16 @@ class ViewController: UIViewController {
         let pangesture = UIPanGestureRecognizer(target: self, action: #selector(ViewController.panGesAction(sender:)))
         pangesture.maximumNumberOfTouches = 1
         self.view.addGestureRecognizer(pangesture)
+        
+        
+        let tapGes = UITapGestureRecognizer(target: self, action: #selector(ViewController.tapGesAction(sender:)))
+        self.view.addGestureRecognizer(tapGes)
     }
     
+    func tapGesAction(sender:UIPanGestureRecognizer)  {
+        
+        secenvView.changeMovingStyle()
+    }
     func panGesAction(sender:UIPanGestureRecognizer)  {
 
         let translation : CGPoint = sender.translation(in: self.view)
@@ -70,22 +78,5 @@ class ViewController: UIViewController {
         secenvView.beginGame()
     }
     
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        super.touchesBegan(touches, with: event)
-//        
-//        print(touches)
-//        print("11111111111")
-//        print(touches.count)
-//        print("00000000000")
-//        for touch in touches {
-//            
-////            touch.location(in: self.view)
-//            
-//           let location = touch.location(in: self.view)
-//                
-//            print(location)
-//            
-//        }
-//    }
-}
+    }
 

@@ -17,6 +17,8 @@ class YFTetrisMovingSceneModel: NSObject {
     var indexState:Int = -20
     var backGroudColor:UIColor?
     
+
+    
     init(x:Int,y:Int) {
         xx = x
         yy = y
@@ -31,10 +33,11 @@ class YFTetrisMovingSceneDataModel: NSObject {
     var dataArray:[YFTetrisMovingSceneModel] = []
     var dataViewArray:[YFTerisBaModel] = []
     
-    
-    
+    var movingModelManager:YFBaseCubeModel?
+
     //MARK: 2个方格的正方形
     func creatTwoCube() {
+        movingModelManager = YFTwoCubeModel()
         dataArray.removeAll()
         for i in 0..<2 {
             let model = YFTetrisMovingSceneModel(x: beginXX + i % 2, y: -2 + i / 2)
@@ -78,17 +81,17 @@ class YFTetrisMovingSceneDataModel: NSObject {
     
     func createArcStyle(){
         
-        let arcIntNum = arc4random() % 3
-        
-        if arcIntNum == 0 {
-            self.creatFourCube()
-        }else if arcIntNum == 1
-        {
-            self.creatLCube()
-        }else
-        {
-            self.creatICube()
-        }
+//        let arcIntNum = arc4random() % 3
+        self.creatTwoCube()
+//        if arcIntNum == 0 {
+//            self.creatFourCube()
+//        }else if arcIntNum == 1
+//        {
+//            self.creatLCube()
+//        }else
+//        {
+//            self.creatICube()
+//        }
     }
     func removeAllModel(){
         self.dataArray.removeAll()

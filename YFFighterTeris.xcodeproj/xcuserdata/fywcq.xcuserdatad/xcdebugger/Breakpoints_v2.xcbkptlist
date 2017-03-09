@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YFFighterTeris/Tetris/TetrisView/YFTetrisSceneView.swift"
-            timestampString = "510302986.842121"
+            timestampString = "510752144.393489"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "229"
-            endingLineNumber = "229"
+            startingLineNumber = "222"
+            endingLineNumber = "222"
             landmarkName = "gameOver()"
             landmarkType = "7">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YFFighterTeris/ViewController.swift"
-            timestampString = "510218814.536404"
+            timestampString = "510751339.453838"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
             landmarkName = "gesLeftAction()"
             landmarkType = "7">
          </BreakpointContent>
