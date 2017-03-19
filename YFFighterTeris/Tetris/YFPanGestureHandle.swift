@@ -8,6 +8,16 @@
 
 import UIKit
 
+enum MoveDirection: Int {
+    case None = 0
+
+    case Left = 1
+    case Right = 2
+    case Bottom = 3
+    
+    case end
+}
+
 let gapLimeteToStep:CGFloat = 30.0
 
 class YFPanGestureHandle: NSObject {
@@ -16,10 +26,12 @@ class YFPanGestureHandle: NSObject {
     var changePoint:CGPoint = CGPoint(x: 0, y: 0)// 默认 是 00
     var endPoint:CGPoint = CGPoint(x: 0, y: 0)
     
+    var moveDirection:MoveDirection = .None
     
     weak var viewC:ViewController?
     
     func handleMovedBeginPoint(point:CGPoint){
+        moveDirection = .None
         startPoint = point
         changePoint = point
     }
@@ -33,6 +45,9 @@ class YFPanGestureHandle: NSObject {
     }
     
     func resultPoint(lastPoint:CGPoint){
+        if moveDirection == .end {
+            return
+        }
         let gapx = lastPoint.x - startPoint.x
         let gapy = lastPoint.y - startPoint.y
         
@@ -45,17 +60,21 @@ class YFPanGestureHandle: NSObject {
             if gapx > 0
             {
                 print("右")
+                moveDirection = .Right
                 viewC?.gesRightAction()
             }else
             {
                 print("左")
+                moveDirection = .Left
                 viewC?.gesLeftAction()
             }
         }else
         {
             if gapy > 0{
                 print("下")
+                moveDirection = .Bottom// 向下
                 viewC?.gesDownAction()
+                moveDirection = .end// 结束这次方向
             }
 
         }

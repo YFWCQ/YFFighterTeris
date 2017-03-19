@@ -10,4 +10,31 @@ import UIKit
 
 class YFTwoCubeModel: YFBaseCubeModel {
 
+    
+    override func changeStyle() {
+        
+        let firstModel = dataArray[0]
+        let secondModel = dataArray[1]
+        
+        if firstModel.xx < secondModel.xx
+        {
+            firstModel.xx = secondModel.xx
+            firstModel.yy = secondModel.yy + 1
+        }
+        else
+        {
+            firstModel.xx = secondModel.xx - 1
+            firstModel.yy = secondModel.yy
+        }
+    }
+    
+    override func creatCube(beginXX: Int) -> [YFTetrisMovingSceneModel] {
+        
+        dataArray.removeAll()
+        for i in 0..<2 {
+            let model = YFTetrisMovingSceneModel(x: beginXX + i % 2, y: -2 + i / 2)
+            dataArray.append(model)
+        }
+        return dataArray
+    }
 }

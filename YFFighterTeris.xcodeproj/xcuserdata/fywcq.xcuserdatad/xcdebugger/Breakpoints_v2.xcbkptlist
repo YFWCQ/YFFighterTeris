@@ -41,13 +41,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "YFFighterTeris/Tetris/YFPanGestureHandle.swift"
-            timestampString = "510293580.54588"
+            filePath = "YFFighterTeris/Tetris/TetrisView/YFTetrisSceneView.swift"
+            timestampString = "511628373.311655"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "38"
-            endingLineNumber = "38"
-            landmarkName = "resultPoint(lastPoint:)"
+            startingLineNumber = "234"
+            endingLineNumber = "234"
+            landmarkName = "pullToBottom()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -72,12 +72,12 @@ class YFTetrisSceneView: UIView {
             self.clearAllfillView()
             self.viewMovingModel.downOneStep()
             self.fillAllfillView()
-//            return self.checkIsBottomed()
+            return true
         }else
         {
             self.needSettingWhenisBottom()
         }
-        return true
+        return false
     }
     
     func clearAllfillView() {
@@ -231,7 +231,7 @@ class YFTetrisSceneView: UIView {
     // 快速下落
     func pullToBottom() {
         for _ in 0...verCount {
-            if self.nextStepGame() {
+            if self.nextStepGame() == false {
              break
             }
         }
@@ -247,6 +247,9 @@ class YFTetrisSceneView: UIView {
     
     func changeMovingStyle()
     {
+        self.clearAllfillView()
+        viewMovingModel.movingModelManager?.changeStyle()
+        self.fillAllfillView()
         print("点击")
     }
 }

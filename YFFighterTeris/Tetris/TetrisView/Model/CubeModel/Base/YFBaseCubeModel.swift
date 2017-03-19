@@ -10,7 +10,20 @@ import UIKit
 
 class YFBaseCubeModel: NSObject {
 
+    var dataArray:[YFTetrisMovingSceneModel] = []
+
+    
     override init() {
         super.init()
     }
+    
+    func changeStyle() {
+        
+    }
+    
+    func creatCube(beginXX:Int) -> [YFTetrisMovingSceneModel] {
+    
+        return []
+    }
+
 }

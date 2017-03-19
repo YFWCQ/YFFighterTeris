@@ -18,12 +18,27 @@ class YFTetrisMovingSceneModel: NSObject {
     var backGroudColor:UIColor?
     
 
+    override init() {
+        super.init()
+    }
     
     init(x:Int,y:Int) {
+        super.init()
         xx = x
         yy = y
         indexState = Int(arc4random() % 6) - 3
         backGroudColor = colorArray[indexState + 3]
+    }
+    
+    func copySameModel() -> YFTetrisMovingSceneModel {
+        
+        let model:YFTetrisMovingSceneModel = YFTetrisMovingSceneModel()
+        
+        model.xx = xx
+        model.yy = yy
+        model.indexState = indexState
+        model.backGroudColor = backGroudColor
+        return model
     }
 }
 
@@ -39,10 +54,11 @@ class YFTetrisMovingSceneDataModel: NSObject {
     func creatTwoCube() {
         movingModelManager = YFTwoCubeModel()
         dataArray.removeAll()
-        for i in 0..<2 {
-            let model = YFTetrisMovingSceneModel(x: beginXX + i % 2, y: -2 + i / 2)
-            dataArray.append(model)
-        }
+        dataArray = (movingModelManager?.creatCube(beginXX: beginXX))!
+//        for i in 0..<2 {
+//            let model = YFTetrisMovingSceneModel(x: beginXX + i % 2, y: -2 + i / 2)
+//            dataArray.append(model)
+//        }
     }
 
     
