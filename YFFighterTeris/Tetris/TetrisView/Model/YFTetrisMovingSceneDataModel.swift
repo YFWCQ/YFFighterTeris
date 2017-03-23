@@ -45,20 +45,38 @@ class YFTetrisMovingSceneModel: NSObject {
 class YFTetrisMovingSceneDataModel: NSObject {
     var beginXX:Int = 3
     
+    var horCount:Int = 0 // 每行多少个
+    var verCount:Int = 0   // 每列 多少个
+
+    
     var dataArray:[YFTetrisMovingSceneModel] = []
     var dataViewArray:[YFTerisBaModel] = []
     
     var movingModelManager:YFBaseCubeModel?
 
+    var isCanChangeToIndex:((Int,Int)->(Bool))!
+
+    init(canChangeBlock:@escaping ((Int,Int)->(Bool))) {
+        super.init()
+        isCanChangeToIndex = canChangeBlock
+    }
+
+    
     //MARK: 2个方格的正方形
     func creatTwoCube() {
-        movingModelManager = YFTwoCubeModel()
+        
+        weak var weakS = self
+        movingModelManager =  YFTwoCubeModel { (hInde, vIndex) -> (Bool) in
+            
+            if hInde < 0 || hInde > (weakS?.horCount)! - 1 || vIndex > (weakS?.verCount)! - 1 || vIndex < 0{
+                return false
+            }
+            
+            return weakS!.isCanChangeToIndex(hInde,vIndex)
+        }
+        
         dataArray.removeAll()
         dataArray = (movingModelManager?.creatCube(beginXX: beginXX))!
-//        for i in 0..<2 {
-//            let model = YFTetrisMovingSceneModel(x: beginXX + i % 2, y: -2 + i / 2)
-//            dataArray.append(model)
-//        }
     }
 
     

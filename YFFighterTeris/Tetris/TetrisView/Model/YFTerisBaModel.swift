@@ -14,9 +14,9 @@ class YFTerisBaModel: NSObject {
     var backGView:YFTetrisBackView!
     
     var showView:YFTetrisShowView!
-    // 横坐标
+    // 横坐标 0 开始
     var horIndex:Int! = 0
-    // 横轴数量
+    // 横轴数量 0 开始
     var horCount:Int! = 0
   
     // 纵坐标

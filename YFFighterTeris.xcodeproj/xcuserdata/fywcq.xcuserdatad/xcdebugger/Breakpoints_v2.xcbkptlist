@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YFFighterTeris/Tetris/TetrisView/YFTetrisSceneView.swift"
-            timestampString = "510752144.393489"
+            timestampString = "511975405.72445"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "222"
-            endingLineNumber = "222"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "gameOver()"
             landmarkType = "7">
          </BreakpointContent>
@@ -42,12 +42,44 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "YFFighterTeris/Tetris/TetrisView/YFTetrisSceneView.swift"
-            timestampString = "511628373.311655"
+            timestampString = "511975405.72445"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "234"
-            endingLineNumber = "234"
+            startingLineNumber = "260"
+            endingLineNumber = "260"
             landmarkName = "pullToBottom()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YFFighterTeris/Tetris/TetrisView/Model/CubeModel/YFTwoCubeModel.swift"
+            timestampString = "511971964.317411"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "changeStyle()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "YFFighterTeris/Tetris/TetrisView/YFTetrisSceneView.swift"
+            timestampString = "511975405.72445"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "118"
+            endingLineNumber = "118"
+            landmarkName = "viewModelFromModel(xx:yy:array:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

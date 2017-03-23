@@ -9,12 +9,18 @@
 import UIKit
 
 class YFBaseCubeModel: NSObject {
-
+    
     var dataArray:[YFTetrisMovingSceneModel] = []
 
+    var isCanChangeToIndex:((Int,Int)->(Bool))!
     
     override init() {
         super.init()
+    }
+    
+    init(canChangeBlock:@escaping ((Int,Int)->(Bool))) {
+        super.init()
+        isCanChangeToIndex = canChangeBlock
     }
     
     func changeStyle() {

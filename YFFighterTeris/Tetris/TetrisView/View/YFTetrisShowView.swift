@@ -14,6 +14,7 @@ class YFTetrisShowView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.layer.cornerRadius = self.frame.size.height / 2.0
     }
     
     required init?(coder aDecoder: NSCoder) {

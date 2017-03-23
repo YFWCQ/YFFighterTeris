@@ -13,7 +13,8 @@ class YFTetrisSceneView: UIView {
     let viewDataModel:YFTetrisSceneDataModel = YFTetrisSceneDataModel()
     
     // 正在 移动的 方块
-    let viewMovingModel:YFTetrisMovingSceneDataModel = YFTetrisMovingSceneDataModel()
+    
+    var viewMovingModel:YFTetrisMovingSceneDataModel!
     
     
     var horCount:Int = 6 // 每行多少个
@@ -27,10 +28,29 @@ class YFTetrisSceneView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
+
+        weak var weakS = self
+        viewMovingModel =  YFTetrisMovingSceneDataModel { (hInde, vIndex) -> (Bool) in
+            
+            
+            if let terisModel = weakS?.viewModelFromModel(xx: hInde,yy: vIndex, array: (weakS?.viewDataModel.sceneViewArray)!){
+
+                return !terisModel.showView.isFill
+            }
+            return true
+        }
         viewMovingModel.beginXX = 3
+
+
     }
     
     func creatSecenView() {
+        
+        
+       
+        viewMovingModel.horCount = horCount
+        viewMovingModel.verCount = verCount
+        
         viewMovingModel.beginXX = horCount / 2
         weak var weakS = self
         timer = Timer.YF_scheduledTimerWithTimeInterval(0.2, closure: {
@@ -82,22 +102,28 @@ class YFTetrisSceneView: UIView {
     
     func clearAllfillView() {
         for model in self.viewMovingModel.dataArray {
-            let arrayXX = model.xx + model.yy * horCount
-            if arrayXX >= 0  && self.viewDataModel.sceneViewArray.count > arrayXX{
-                let terisModel = self.viewDataModel.sceneViewArray[arrayXX]
+            if let terisModel = self.viewModelFromModel(xx: model.xx,yy: model.yy, array: self.viewDataModel.sceneViewArray){
                 terisModel.showView.empty()
             }
         }
         self.viewMovingModel.dataViewArray.removeAll()
     }
     
+    func viewModelFromModel(xx:Int,yy:Int,array:[YFTerisBaModel]) -> YFTerisBaModel? {
+        let arrayXX = xx + yy * horCount
+        if arrayXX >= 0  && array.count > arrayXX{
+            let terisModel = array[arrayXX]
+            return terisModel
+        }
+        return nil
+    }
+    
     func fillAllfillView() {
         for model in self.viewMovingModel.dataArray {
-            let arrayXX = model.xx + model.yy * horCount
-            if arrayXX >= 0  && self.viewDataModel.sceneViewArray.count > arrayXX{
-                let terisModel = self.viewDataModel.sceneViewArray[arrayXX]
-                terisModel.showView.fill(model: model)
-                self.viewMovingModel.dataViewArray.append(terisModel)
+           if let terisModel = self.viewModelFromModel(xx: model.xx,yy: model.yy, array: self.viewDataModel.sceneViewArray)
+           {
+            terisModel.showView.fill(model: model)
+            self.viewMovingModel.dataViewArray.append(terisModel)
             }
         }
     }
