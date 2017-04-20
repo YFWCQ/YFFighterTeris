@@ -24,6 +24,10 @@ class YFTerisBaModel: NSObject {
     // 纵轴数量
     var verCount:Int! = 0
     
+    // 是否是 刚刚被消除 变成的 空页面
+    var isEmptyWhenClearUp = false
+    
+    
     init(frame:CGRect,hIndex:Int,vIndex:Int) {
     
         super.init()

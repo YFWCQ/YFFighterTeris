@@ -46,15 +46,15 @@ class YFTetrisSceneView: UIView {
     
     func creatSecenView() {
         
-        
-       
         viewMovingModel.horCount = horCount
         viewMovingModel.verCount = verCount
         
         viewMovingModel.beginXX = horCount / 2
         weak var weakS = self
         timer = Timer.YF_scheduledTimerWithTimeInterval(0.2, closure: {
-            weakS?.nextStepGame()
+            if (weakS?.nextStepGameIfCan())!{
+                //
+            }
         }, repeats: true)
         
         timer.pauseTimer()
@@ -87,7 +87,7 @@ class YFTetrisSceneView: UIView {
      timer.resumeTimer()
     }
     
-    func nextStepGame()-> Bool {
+    func nextStepGameIfCan()-> Bool {
         if self.isCanDown(){
             self.clearAllfillView()
             self.viewMovingModel.downOneStep()
@@ -257,7 +257,7 @@ class YFTetrisSceneView: UIView {
     // 快速下落
     func pullToBottom() {
         for _ in 0...verCount {
-            if self.nextStepGame() == false {
+            if self.nextStepGameIfCan() == false {
              break
             }
         }

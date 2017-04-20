@@ -59,3 +59,54 @@ class YFTwoCubeModel: YFBaseCubeModel {
         return dataArray
     }
 }
+
+/*
+ override func changeStyle() {
+ 
+ let firstModel = dataArray[0]
+ let secondModel = dataArray[1]
+ 
+ let acrInt = arc4random() % 2
+ 
+ if firstModel.yy == secondModel.yy
+ {
+ // 横向
+ if acrInt == 1
+ {
+ // 保证不过界
+ if self.isCanChangeToIndex(secondModel.xx,secondModel.yy + 1) {
+ firstModel.xx = secondModel.xx
+ firstModel.yy = secondModel.yy + 1
+ }
+ }
+ else
+ {
+ if self.isCanChangeToIndex(secondModel.xx,secondModel.yy - 1) {
+ firstModel.xx = secondModel.xx
+ firstModel.yy = secondModel.yy - 1
+ }
+ }
+ }
+ else if firstModel.xx == secondModel.xx
+ {
+ 
+ if firstModel.yy > secondModel.yy
+ {
+ if self.isCanChangeToIndex(secondModel.xx + 1,secondModel.yy) {
+ firstModel.xx = secondModel.xx + 1
+ firstModel.yy = secondModel.yy
+ }
+ }
+ else
+ {
+ if self.isCanChangeToIndex(secondModel.xx - 1,secondModel.yy) {
+ firstModel.xx = secondModel.xx - 1
+ firstModel.yy = secondModel.yy
+ }
+ }
+ 
+ }
+ }
+
+ */
+
