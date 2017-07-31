@@ -8,6 +8,7 @@
 
 import UIKit
 
+// 记录 移动的 方块
 class YFBaseCubeModel: NSObject {
     
     var dataArray:[YFTetrisMovingSceneModel] = []

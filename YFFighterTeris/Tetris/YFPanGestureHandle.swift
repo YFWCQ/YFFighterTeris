@@ -41,7 +41,6 @@ class YFPanGestureHandle: NSObject {
     }
     func handleMovedEndPoint(point:CGPoint){
         endPoint = point
-        
     }
     
     func resultPoint(lastPoint:CGPoint){
@@ -76,8 +75,6 @@ class YFPanGestureHandle: NSObject {
                 viewC?.gesDownAction()
                 moveDirection = .end// 结束这次方向
             }
-
         }
     }
-    
 }
