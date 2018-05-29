@@ -67,9 +67,9 @@ class YFTerisBaModel: NSObject {
     }
     
     
-    func checkIsCan(<#parameters#>) -> <#return type#> {
-        <#function body#>
-    }
-    
+//    func checkIsCan(<#parameters#>) -> <#return type#> {
+//        <#function body#>
+//    }
+//
     
 }
